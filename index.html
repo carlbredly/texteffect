@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Effet Texte Vidéo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --fontsize: clamp(2rem, 10vw, 7rem);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+      background-color: black; /* Fallback background */
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black; /* Solid black background for the whole container */
+      overflow: hidden;
+    }
+
+    .video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      opacity: 0; /* Hide video by default, only visible through masks */
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .text {
+      position: relative;
+      z-index: 2;
+      font-size: var(--fontsize);
+      font-weight: bold;
+      text-transform: uppercase;
+      color: white;
+      text-align: center;
+      line-height: 1.2;
+      background-color: black; /* Solid black background for text */
+      padding: 0.5em; /* Add padding to ensure full coverage */
+      width: 100%; /* Ensure text background spans full width */
+    }
+
+    .video-mask {
+      display: inline-block;
+      color: transparent; /* Hide text color */
+      background: url('src/video.mp4'); /* Directly reference the video as background */
+      background-size: cover; /* Match video size */
+      background-position: center; /* Center the video */
+      -webkit-background-clip: text; /* Clip video to text */
+      background-clip: text; /* Standard property */
+      position: relative;
+    }
+
+    /* Specific widths for each video mask */
+    .video-mask:nth-child(2) {
+      width: 7em; /* For "healthy" */
+    }
+
+    .video-mask:nth-child(4) {
+      width: 10em; /* For "live longer" */
+    }
+
+    .video-mask:nth-child(6) {
+      width: 7em; /* For "happier" */
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --fontsize: clamp(1.5rem, 8vw, 4rem);
+      }
+      .video-mask:nth-child(2) { width: 5em; }
+      .video-mask:nth-child(4) { width: 8em; }
+      .video-mask:nth-child(6) { width: 5em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="video-container">
+      <video autoplay loop muted playsinline>
+        <source src="src/video.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <h1 class="text">
+      We're here <span class="video-mask">to make</span> to make <br>
+      healthy <span class="video-mask">living</span> living effortless, <br>
+      so you can <span class="video-mask">live</span> live longer <br>
+      and happier <span class="video-mask">everyday</span>
+    </h1>
+  </div>
+  
+</body>
+</html>

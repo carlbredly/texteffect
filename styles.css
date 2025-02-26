@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fontsize: 7rem; /* Taille de police responsive */
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Vidéo en arrière-plan */
+.container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Vidéo en dessous du texte */
+    background-color: black;
+}
+
+/* Texte principal */
+.container h1 {
+    position: relative;
+    font-size: var(--fontsize);
+    color: rgb(255, 255, 255);
+    z-index: 2; /* Texte au-dessus de la vidéo */
+    text-align: center;
+    mix-blend-mode: m /* Fusion avec la vidéo */
+    background-color: black
+}
+
+/* Masque vidéo */
+.video-mask {
+    position: relative;
+    display: inline-block;
+    width: 100px; /* Largeur du masque */
+    height: var(--fontsize); /* Hauteur du masque */
+    background: rgb(255, 254, 254); /* Couleur de fond pour le masque */
+    mix-blend-mode: screen; /* Fusion avec la vidéo */
+}
+
+/* Masque de pleine largeur */
+.video-mask.full-width {
+    width: 100%; /* Masque de pleine largeur */
+}
